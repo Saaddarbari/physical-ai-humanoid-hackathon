@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+
+# Docusaurus build output
+.build/
+dist/
+out/
+
+# Docusaurus cache
+.docusaurus/
+
+# Environment variables
+.env*
+
+# IDE files
+.vscode/
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

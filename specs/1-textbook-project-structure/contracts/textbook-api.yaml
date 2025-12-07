@@ -1,0 +1,480 @@
+openapi: 3.0.0
+info:
+  title: Physical AI & Humanoid Robotics Textbook API
+  description: API for the interactive online textbook platform with RAG-powered Q&A, personalization, and translation features
+  version: 1.0.0
+servers:
+  - url: https://api.physical-ai-humanoid-robotics.edu/v1
+    description: Production server
+  - url: https://staging.api.physical-ai-humanoid-robotics.edu/v1
+    description: Staging server
+
+paths:
+  /modules:
+    get:
+      summary: List all textbook modules
+      description: Retrieve a list of all available textbook modules in the curriculum
+      parameters:
+        - name: includeChapters
+          in: query
+          description: Include chapters in the response
+          required: false
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: List of textbook modules
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  modules:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TextbookModule'
+                  total:
+                    type: integer
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /modules/{moduleId}:
+    get:
+      summary: Get module details
+      description: Retrieve detailed information about a specific textbook module
+      parameters:
+        - name: moduleId
+          in: path
+          required: true
+          description: Unique identifier of the module
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Detailed information about the textbook module
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TextbookModule'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /chapters/{chapterId}:
+    get:
+      summary: Get chapter details
+      description: Retrieve detailed information about a specific chapter
+      parameters:
+        - name: chapterId
+          in: path
+          required: true
+          description: Unique identifier of the chapter
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Detailed information about the chapter
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Chapter'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /students/{studentId}/profile:
+    get:
+      summary: Get student profile
+      description: Retrieve the profile information for a specific student
+      parameters:
+        - name: studentId
+          in: path
+          required: true
+          description: Unique identifier of the student
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Student profile information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudentProfile'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+    put:
+      summary: Update student profile
+      description: Update the profile information for a specific student
+      parameters:
+        - name: studentId
+          in: path
+          required: true
+          description: Unique identifier of the student
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                preferred_language:
+                  type: string
+                accessibility_requirements:
+                  type: object
+                urdu_translation_enabled:
+                  type: boolean
+                personalization_quiz_results:
+                  type: object
+      responses:
+        '200':
+          description: Updated student profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudentProfile'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /students/{studentId}/progress:
+    get:
+      summary: Get student progress
+      description: Retrieve the learning progress for a specific student across all modules
+      parameters:
+        - name: studentId
+          in: path
+          required: true
+          description: Unique identifier of the student
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Student's progress across all modules
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  studentId:
+                    type: string
+                  progress:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ModuleProgress'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /students/{studentId}/progress/{moduleId}:
+    get:
+      summary: Get module progress
+      description: Retrieve the progress for a specific student in a specific module
+      parameters:
+        - name: studentId
+          in: path
+          required: true
+          description: Unique identifier of the student
+          schema:
+            type: string
+        - name: moduleId
+          in: path
+          required: true
+          description: Unique identifier of the module
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Student's progress in the specified module
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModuleProgress'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+    put:
+      summary: Update module progress
+      description: Update the progress status for a specific student in a specific module
+      parameters:
+        - name: studentId
+          in: path
+          required: true
+          description: Unique identifier of the student
+          schema:
+            type: string
+        - name: moduleId
+          in: path
+          required: true
+          description: Unique identifier of the module
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [not_started, in_progress, completed]
+                completion_percentage:
+                  type: number
+                  minimum: 0
+                  maximum: 100
+      responses:
+        '200':
+          description: Updated progress record
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModuleProgress'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /rag/query:
+    post:
+      summary: Ask a question to the RAG system
+      description: Submit a question to the RAG-powered Q&A system
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - query
+              properties:
+                query:
+                  type: string
+                  description: The question to ask
+                studentId:
+                  type: string
+                  description: Optional student ID for personalization
+                context:
+                  type: string
+                  description: Optional context for the question (e.g., current chapter)
+      responses:
+        '200':
+          description: Answer from the RAG system
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  answer:
+                    type: string
+                    description: The answer to the question
+                  confidence_score:
+                    type: number
+                    minimum: 0
+                    maximum: 1
+                    description: Confidence level of the response
+                  source_citations:
+                    type: array
+                    items:
+                      type: string
+                    description: Citations to source material
+                  query_id:
+                    type: string
+                    description: Unique identifier for this query
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /translations/{contentId}/urdu:
+    get:
+      summary: Get Urdu translation
+      description: Retrieve the Urdu translation for specific content
+      parameters:
+        - name: contentId
+          in: path
+          required: true
+          description: Unique identifier of the content to translate
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Urdu translation of the content
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  contentId:
+                    type: string
+                  urdu_text:
+                    type: string
+                    description: Content translated to Urdu
+                  last_updated:
+                    type: string
+                    format: date-time
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+components:
+  schemas:
+    TextbookModule:
+      type: object
+      required:
+        - id
+        - title
+        - description
+        - module_number
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the module
+        title:
+          type: string
+          description: Display name of the module
+        description:
+          type: string
+          description: Brief overview of the module content
+        module_number:
+          type: integer
+          description: Sequential number of the module (1-4)
+        estimated_duration:
+          type: number
+          description: Estimated time to complete in hours
+        difficulty_level:
+          type: string
+          enum: [beginner, intermediate, advanced]
+        prerequisites:
+          type: array
+          items:
+            type: string
+          description: IDs of prerequisite modules
+        chapters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Chapter'
+          description: Chapters included in this module (when requested)
+
+    Chapter:
+      type: object
+      required:
+        - id
+        - title
+        - module_id
+        - chapter_number
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the chapter
+        title:
+          type: string
+          description: Display name of the chapter
+        content:
+          type: string
+          description: Markdown content for the chapter
+        module_id:
+          type: string
+          description: Reference to parent module
+        chapter_number:
+          type: integer
+          description: Sequential number within the parent module
+        estimated_time:
+          type: number
+          description: Estimated time to complete in minutes
+        learning_objectives:
+          type: array
+          items:
+            type: string
+          description: Array of learning objectives for the chapter
+        requires_simulation:
+          type: boolean
+          description: Boolean indicating if simulation examples are included
+
+    StudentProfile:
+      type: object
+      required:
+        - id
+        - username
+        - email
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the student
+        username:
+          type: string
+          description: Unique username for the student
+        email:
+          type: string
+          format: email
+          description: Student's email address
+        preferred_language:
+          type: string
+          description: Primary language preference
+        accessibility_requirements:
+          type: object
+          description: JSON object containing accessibility preferences
+        urdu_translation_enabled:
+          type: boolean
+          description: Boolean for Urdu translation preference
+        personalization_quiz_results:
+          type: object
+          description: JSON object containing quiz responses for personalization
+
+    ModuleProgress:
+      type: object
+      required:
+        - studentId
+        - moduleId
+        - status
+      properties:
+        studentId:
+          type: string
+          description: Reference to the student
+        moduleId:
+          type: string
+          description: Reference to the module
+        status:
+          type: string
+          enum: [not_started, in_progress, completed]
+          description: Current status of the module
+        completion_percentage:
+          type: number
+          minimum: 0
+          maximum: 100
+          description: Percentage of module completed
+        time_spent:
+          type: number
+          description: Total time spent on the module in minutes
+        last_accessed:
+          type: string
+          format: date-time
+          description: Timestamp of last interaction
+        completed_at:
+          type: string
+          format: date-time
+          description: Timestamp when module was completed
+
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              message:
+                type: string
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: "not_found"
+              message:
+                type: string
+                example: "The requested resource was not found"
