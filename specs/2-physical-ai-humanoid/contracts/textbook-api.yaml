@@ -1,0 +1,169 @@
+# Textbook Content API Contract
+
+**Feature**: 2-physical-ai-humanoid
+**Date**: 2025-12-07
+**Status**: Phase 1 Completion
+
+## Overview
+
+This API contract defines the interfaces for the Physical AI & Humanoid Robotics textbook system. The system provides educational content through a structured API that supports both web-based delivery and offline access.
+
+## Content Retrieval API
+
+### Get Module List
+- **Endpoint**: `GET /api/modules`
+- **Description**: Retrieve list of all available modules
+- **Response**:
+  ```json
+  {
+    "modules": [
+      {
+        "id": "robotic-nervous-system",
+        "name": "Robotic Nervous System",
+        "description": "Robot communication architecture",
+        "chapters_count": 3,
+        "estimated_duration": "8 hours",
+        "difficulty": "intermediate"
+      },
+      {
+        "id": "digital-twin",
+        "name": "Digital Twin",
+        "description": "Physics simulation and environment building",
+        "chapters_count": 3,
+        "estimated_duration": "10 hours",
+        "difficulty": "intermediate"
+      },
+      {
+        "id": "ai-robot-brain",
+        "name": "AI-Robot Brain",
+        "description": "Perception, navigation, and AI integration",
+        "chapters_count": 4,
+        "estimated_duration": "12 hours",
+        "difficulty": "advanced"
+      }
+    ]
+  }
+  ```
+
+### Get Chapter Content
+- **Endpoint**: `GET /api/modules/{module_id}/chapters/{chapter_number}`
+- **Description**: Retrieve specific chapter content
+- **Parameters**:
+  - `module_id`: ID of the module
+  - `chapter_number`: Chapter number within the module
+- **Response**:
+  ```json
+  {
+    "id": "communication-architecture",
+    "title": "Robot Communication Architecture",
+    "module_id": "robotic-nervous-system",
+    "chapter_number": 1,
+    "summary": "Learn about nodes, topics, services, and actions",
+    "learning_goals": ["Understand ROS 2 communication patterns", "Implement basic node communication"],
+    "core_concepts": ["Nodes", "Topics", "Services", "Actions"],
+    "content": "# Chapter Content in Markdown",
+    "implementation_section": "Code examples and implementation details",
+    "additional_resources": ["link1", "link2"],
+    "quiz_questions": ["question1", "question2"]
+  }
+  ```
+
+### Get Code Examples
+- **Endpoint**: `GET /api/code-examples`
+- **Description**: Retrieve available code examples
+- **Query Parameters**:
+  - `module_id`: Filter by module
+  - `chapter_number`: Filter by chapter
+  - `difficulty`: Filter by difficulty level
+- **Response**:
+  ```json
+  {
+    "examples": [
+      {
+        "id": "basic-publisher",
+        "title": "Basic Publisher Node",
+        "chapter_id": "communication-architecture",
+        "language": "python",
+        "code": "# Python code here",
+        "explanation": "Explanation of the code",
+        "use_case": "Demonstrates basic topic publishing",
+        "dependencies": ["rclpy"]
+      }
+    ]
+  }
+  ```
+
+### Get Exercises
+- **Endpoint**: `GET /api/exercises`
+- **Description**: Retrieve available exercises
+- **Query Parameters**:
+  - `module_id`: Filter by module
+  - `chapter_number`: Filter by chapter
+  - `type`: Filter by exercise type (simulation, physical, theoretical)
+- **Response**:
+  ```json
+  {
+    "exercises": [
+      {
+        "id": "exercise-1-1",
+        "title": "Create a Simple Publisher",
+        "chapter_id": "communication-architecture",
+        "type": "simulation",
+        "difficulty": "beginner",
+        "instructions": "Detailed instructions for the exercise",
+        "expected_outcome": "What the student should achieve",
+        "hints": ["hint1", "hint2"],
+        "solution": "Reference solution (for educators)"
+      }
+    ]
+  }
+  ```
+
+## Assessment API
+
+### Submit Exercise Completion
+- **Endpoint**: `POST /api/exercises/{exercise_id}/submit`
+- **Description**: Submit completion of an exercise
+- **Request Body**:
+  ```json
+  {
+    "student_id": "unique-student-identifier",
+    "solution": "student's solution or verification",
+    "completion_time": "timestamp",
+    "success": true
+  }
+  ```
+- **Response**:
+  ```json
+  {
+    "status": "success",
+    "feedback": "Instructor feedback",
+    "progress_updated": true
+  }
+  ```
+
+## Search API
+
+### Search Content
+- **Endpoint**: `GET /api/search`
+- **Description**: Search across all textbook content
+- **Query Parameters**:
+  - `q`: Search query
+  - `module_id`: Filter by module
+  - `type`: Filter by content type (chapter, exercise, code)
+- **Response**:
+  ```json
+  {
+    "results": [
+      {
+        "id": "result-id",
+        "title": "Result Title",
+        "type": "chapter|exercise|code",
+        "module_id": "module-id",
+        "relevance": 0.95,
+        "preview": "Brief preview of content"
+      }
+    ],
+    "total_results": 5
+  }
+  ```

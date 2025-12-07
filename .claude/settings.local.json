@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git fetch --all --prune)",
+      "Bash(pwsh -File .specify/scripts/powershell/check-prerequisites.ps1 -Json -PathsOnly)",
+      "Bash(pwsh -File .specify/scripts/powershell/check-prerequisites.ps1 -Json -RequireTasks -IncludeTasks)",
+      "Bash(dir specs1-textbook-project-structure)",
+      "Bash(mkdir -p docusaurus/src/components docusaurus/src/pages docusaurus/src/css docusaurus/static docusaurus/docs)",
+      "Bash(mv docusaurus.config.js docusaurus/)",
+      "Bash(npm install prism-react-renderer)",
+      "Bash(dir \"node_modules\\prism-react-renderer\" /s)",
+      "Bash(cmd /c \"dir \"\"node_modules\\prism-react-renderer\"\" /s\")",
+      "Bash(npm run start)",
+      "Bash(dir docusaurusdocs /s)",
+      "Bash(npx docusaurus start --port 3002 --config ./docusaurus/docusaurus.config.js)",
+      "Bash(npx docusaurus start --port 3005 --config ./docusaurus/docusaurus.config.js)",
+      "Bash(mkdir -p specs/2-physical-ai-humanoid)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

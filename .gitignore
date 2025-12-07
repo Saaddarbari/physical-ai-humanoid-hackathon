@@ -1,24 +1,110 @@
 # Dependencies
 node_modules/
+.pnp/
+.pnp.js
 
-# Docusaurus build output
-.build/
-dist/
-out/
-
-# Docusaurus cache
+# Docusaurus
 .docusaurus/
+.cache/
+.server/
+.vercel/
+netlify/
+public/
+docs/api/
+api/
+build/
 
-# Environment variables
+# Testing
+coverage/
+*.log
+
+# Production
+.next/
+nuxt/
+output/
+
+# Environment
 .env*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-# IDE files
-.vscode/
-.idea/
-
-# OS generated files
+# System
 .DS_Store
 Thumbs.db
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Icon?
+Network Trash Folder
+Temporary Items
+apfs_db
+.SafariFloatParsingDB
+.SafariIcons.db
+fseventsd
+vol
 
-# Logs
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.tmp
+.vs/
+*.sublime-project
+*.sublime-workspace
+nbproject/
+nbbuild/
+nbdist/
+nbreleases/
+target/
+*.gem
+*.tar.gz
+*.tgz
+*.zip
+*.jar
+*.war
+*.ear
+*.dll
+*.so
+*.o
+*.a
+*.class
+
+# Python for robotics examples
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+.ENV
+env.bak/
+venv.bak/
+.venv.bak/
+ENV.bak/
+.ENV.bak
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
 *.log
+.git/refs/heads/
+.pytest_cache/
+.hypothesis/
+.coverage.*
+.pyre/
+.pytype/
+cython_debug/

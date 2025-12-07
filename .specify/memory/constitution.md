@@ -1,13 +1,8 @@
 <!-- SYNC IMPACT REPORT
-Version change: 1.0.0 → 1.1.0
+Version change: 1.1.0 → 1.2.0
 Modified principles:
-- Principle 1: [PRINCIPLE_1_NAME] → AI-Driven Technical Book Accuracy
-- Principle 2: [PRINCIPLE_2_NAME] → Clarity for Intermediate Developers
-- Principle 3: [PRINCIPLE_3_NAME] → Progressive Learning Structure
-- Principle 4: [PRINCIPLE_4_NAME] → Practical Implementation-First Approach
-- Principle 5: [PRINCIPLE_5_NAME] → Human Review of AI Content
-- Principle 6: New principle added - Docusaurus GitHub Pages Publishing
-Added sections: Content Requirements, Structural Guidelines, Tooling Requirements, Writing Constraints, Sources, Success Criteria
+- Principle 6: Docusaurus GitHub Pages Publishing → Docusaurus Vercel Publishing
+Added sections: None
 Removed sections: None
 Templates requiring updates:
 - .specify/templates/plan-template.md ✅ updated
@@ -35,8 +30,8 @@ Focus on practical, implementation-first approach rather than theoretical discus
 ### Human Review of AI Content
 All AI-generated content must undergo human review before publication. This ensures quality, accuracy, and alignment with educational goals while maintaining professional standards.
 
-### Docusaurus GitHub Pages Publishing
-Content must be optimized for Docusaurus structure and deployment on GitHub Pages. All documentation format and organization should support the chosen publishing platform.
+### Docusaurus Vercel Publishing
+Content must be optimized for Docusaurus structure and deployment on Vercel. All documentation format and organization should support the chosen publishing platform.
 
 ## Content Requirements
 
@@ -48,7 +43,7 @@ Each chapter must contain: Summary, Learning goals, Core concepts, Implementatio
 
 ## Tooling Requirements
 
-Content must be written using Spec-Kit Plus and Claude Code, follow a Markdown-first pipeline, be built using Docusaurus, and deployed on GitHub Pages. All tooling choices must support the educational mission and technical requirements.
+Content must be written using Spec-Kit Plus and Claude Code, follow a Markdown-first pipeline, be built using Docusaurus, and deployed on Vercel. All tooling choices must support the educational mission and technical requirements.
 
 ## Writing Constraints
 
@@ -60,10 +55,10 @@ Acceptable sources include: Official documentation, Academic or peer-reviewed so
 
 ## Success Criteria
 
-Docusaurus site builds and deploys successfully on GitHub Pages. All chapters follow Spec-Kit specification. Code examples function as written. Logical, progressive learning flow maintained. Zero unexplained jargon. Readers can independently follow and implement examples.
+Docusaurus site builds and deploys successfully on Vercel. All chapters follow Spec-Kit specification. Code examples function as written. Logical, progressive learning flow maintained. Zero unexplained jargon. Readers can independently follow and implement examples.
 
 ## Governance
 
 All content must comply with these constitutional principles. Amendments require documentation of the change, approval process, and migration plan for existing content. All reviews and PRs must verify constitutional compliance. Complexity must be justified with clear educational benefit. Use this constitution as the primary guidance for all content creation and development decisions.
 
-**Version**: 1.1.0 | **Ratified**: 2025-12-07 | **Last Amended**: 2025-12-07
+**Version**: 1.2.0 | **Ratified**: 2025-12-07 | **Last Amended**: 2025-12-07

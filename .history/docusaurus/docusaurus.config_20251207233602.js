@@ -54,15 +54,15 @@ const config = {
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-    ({
-      // Replace with your project's social card
-      image: 'img/logo_hackathon.png',
-      navbar: {
-        title: 'Physical AI & Humanoid Robotics',
-        logo: {
-          alt: 'Physical AI Logo',
-          src: 'img/logo_hackathon.png',
-        },
+    // ({
+    //   // Replace with your project's social card
+    //   image: 'img/logo_hackathon.png',
+    //   navbar: {
+    //     title: 'Physical AI & Humanoid Robotics',
+    //     logo: {
+    //       alt: 'Physical AI Logo',
+    //       src: 'img/logo_hackathon.png',
+    //     },
         items: [
           {
             type: 'docSidebar',

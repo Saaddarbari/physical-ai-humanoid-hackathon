@@ -56,27 +56,27 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
-      image: 'img/logo_hackathon.png',
-      navbar: {
-        title: 'Physical AI & Humanoid Robotics',
-        logo: {
-          alt: 'Physical AI Logo',
-          src: 'img/logo_hackathon.png',
-        },
-        items: [
-          {
-            type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
-            position: 'left',
-            label: 'Textbook',
-          },
-          {
-            href: 'https://github.com/facebook/docusaurus',
-            label: 'GitHub',
-            position: 'right',
-          },
-        ],
-      },
+      // image: 'img/logo_hackathon.png',
+      // navbar: {
+      //   title: 'Physical AI & Humanoid Robotics',
+      //   logo: {
+      //     alt: 'Physical AI Logo',
+      //     src: 'img/logo_hackathon.png',
+      //   },
+      //   items: [
+      //     {
+      //       type: 'docSidebar',
+      //       sidebarId: 'tutorialSidebar',
+      //       position: 'left',
+      //       label: 'Textbook',
+      //     },
+      //     {
+      //       href: 'https://github.com/facebook/docusaurus',
+      //       label: 'GitHub',
+      //       position: 'right',
+      //     },
+      //   ],
+      // },
       footer: {
         style: 'dark',
         links: [
