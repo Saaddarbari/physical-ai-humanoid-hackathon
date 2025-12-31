@@ -14,7 +14,12 @@
       "Bash(dir docusaurusdocs /s)",
       "Bash(npx docusaurus start --port 3002 --config ./docusaurus/docusaurus.config.js)",
       "Bash(npx docusaurus start --port 3005 --config ./docusaurus/docusaurus.config.js)",
-      "Bash(mkdir -p specs/2-physical-ai-humanoid)"
+      "Bash(mkdir -p specs/2-physical-ai-humanoid)",
+      "Bash(npm run build)",
+      "Bash(vercel --prod --yes --force)",
+      "Bash(dir src)",
+      "Bash(dir /s)",
+      "Bash(npm run build -- --config ./docusaurus/docusaurus.config.js)"
     ],
     "deny": [],
     "ask": []

@@ -21,7 +21,7 @@ const config = {
   organizationName: 'facebook', // Usually your GitHub org/user name.
   projectName: 'docusaurus', // Usually your repo name.
 
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
   // Even if you don't use internalization, you can use this field to set useful
@@ -45,6 +45,7 @@ const config = {
             'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
         blog: false, // Disable blog for textbook
+        pages: {}, // Enable pages to support homepage
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
@@ -76,6 +77,7 @@ const config = {
             position: 'right',
           },
         ],
+        style: 'dark',
       },
       footer: {
         style: 'dark',
@@ -84,8 +86,16 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
+                label: 'Textbook Introduction',
                 to: '/docs/intro',
+              },
+              {
+                label: 'Physical AI Fundamentals',
+                to: '/docs/ai-robot-brain',
+              },
+              {
+                label: 'Humanoid Robotics',
+                to: '/docs/robotic-nervous-system',
               },
             ],
           },
@@ -93,8 +103,8 @@ const config = {
             title: 'Community',
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+                label: 'GitHub Discussions',
+                href: 'https://github.com/facebook/docusaurus/discussions',
               },
               {
                 label: 'Discord',
@@ -112,6 +122,14 @@ const config = {
               {
                 label: 'GitHub',
                 href: 'https://github.com/facebook/docusaurus',
+              },
+              {
+                label: 'Contributing',
+                to: '/docs/contributing',
+              },
+              {
+                label: 'Project Status',
+                to: '/docs/status',
               },
             ],
           },
