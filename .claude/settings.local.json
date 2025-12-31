@@ -19,7 +19,8 @@
       "Bash(vercel --prod --yes --force)",
       "Bash(dir src)",
       "Bash(dir /s)",
-      "Bash(npm run build -- --config ./docusaurus/docusaurus.config.js)"
+      "Bash(npm run build -- --config ./docusaurus/docusaurus.config.js)",
+      "Bash(powershell Remove-Item -Recurse -Force \"C:\\\\Govenor Initiative Q3\\\\Hackathon\\\\plugins\")"
     ],
     "deny": [],
     "ask": []

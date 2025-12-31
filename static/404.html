@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Physical AI & Humanoid Robotics Textbook</title>
+    <script type="text/javascript">
+      // If the URL contains a route that doesn't exist, redirect to the main app
+      (function() {
+        var redirect = localStorage.getItem('redirect');
+        if (redirect === 'false') {
+          localStorage.removeItem('redirect');
+          return;
+        }
+        localStorage.removeItem('redirect');
+        window.location.replace('/');
+      })();
+    </script>
+  </head>
+  <body>
+    <h1>Physical AI & Humanoid Robotics Textbook</h1>
+    <p>If you're not redirected automatically, <a href="/">click here to go to the homepage</a>.</p>
+  </body>
+</html>

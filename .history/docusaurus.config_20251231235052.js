@@ -11,11 +11,10 @@ const config = {
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://physical-ai-humanoid-hackathon.vercel.app',
-  baseUrl: '/',
+  url: 'https://saaddarbari.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  trailingSlash: true, // Use trailing slashes for better Vercel compatibility
+  baseUrl: '/physical-ai-humanoid-hackathon/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -24,10 +23,6 @@ const config = {
 
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
-  onDuplicateRoutes: 'warn',
-
-  // For proper static asset handling on Vercel
-  staticDirectories: ['static', 'public'],
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
